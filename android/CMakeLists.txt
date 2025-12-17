@@ -27,3 +27,7 @@ target_link_libraries(
         ${LOG_LIB}
         android                                   # <-- Android core
 )
+
+target_link_options(${PACKAGE_NAME} PRIVATE
+  -Wl,-z,max-page-size=16384
+)
