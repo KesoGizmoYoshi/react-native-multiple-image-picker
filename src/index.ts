@@ -20,7 +20,6 @@ import {
   CameraConfig,
   NitroCameraConfig,
   CameraResult,
-  Language,
 } from './types'
 import { CropReject, CameraError } from './types/error'
 
@@ -45,7 +44,7 @@ export async function openPicker<T extends Config>(
       config.theme = theme
     }
 
-    config.language = validateLanguage(config.language)
+    // config.language = validateLanguage(config.language)
 
     if (typeof config.crop === 'boolean') {
       config.crop = config.crop ? { ratio: [] } : undefined
@@ -73,12 +72,12 @@ export async function openCropper(
     (resolved, rejected: (reason: (typeof CropReject)[0]) => void) => {
       const cropConfig = {
         presentation: 'fullScreenModal',
-        language: 'system',
+        language: 'en',
         ratio: [],
         ...config,
       } as NitroCropConfig
 
-      cropConfig.language = validateLanguage(cropConfig.language)
+      // cropConfig.language = validateLanguage(cropConfig.language)
 
       return Picker.openCrop(
         image,
@@ -100,14 +99,14 @@ export function openPreview(
   conf?: PreviewConfig
 ): void {
   const config: PreviewConfig = {
-    language: conf?.language ?? 'system',
+    language: 'en',
     videoAutoPlay: true,
     ...conf,
   }
 
-  if (config?.language && !LANGUAGES.includes(config.language)) {
-    config.language = 'system'
-  }
+  // if (config?.language && !LANGUAGES.includes(config.language)) {
+  //   config.language = 'system'
+  // }
 
   if (media.length === 0) {
     throw new Error('Media is required')
@@ -126,7 +125,7 @@ export async function openCamera(config?: CameraConfig): Promise<CameraResult> {
     const cameraConfig = {
       cameraDevice: 'back',
       presentation: 'fullScreenModal',
-      language: 'system',
+      language: 'en',
       mediaType: 'all',
       allowLocation: true,
       isSaveSystemAlbum: false,
@@ -135,7 +134,7 @@ export async function openCamera(config?: CameraConfig): Promise<CameraResult> {
 
     cameraConfig.color = processColor(cameraConfig.color ?? primaryColor) as any
 
-    cameraConfig.language = validateLanguage(cameraConfig.language)
+    // cameraConfig.language = validateLanguage(cameraConfig.language)
 
     if (typeof cameraConfig.crop === 'boolean') {
       cameraConfig.crop = cameraConfig.crop ? { ratio: [] } : undefined
@@ -158,12 +157,12 @@ export async function openCamera(config?: CameraConfig): Promise<CameraResult> {
 
 const DEFAULT_COUNT = 20
 
-const validateLanguage = (language?: Language): Language => {
-  if (!language || !LANGUAGES.includes(language)) {
-    return 'system'
-  }
-  return language
-}
+// const validateLanguage = (language?: Language): Language => {
+//   if (!language || !LANGUAGES.includes(language)) {
+//     return 'system'
+//   }
+//   return language
+// }
 
 const primaryColor = '#2979ff'
 
@@ -180,7 +179,7 @@ export const defaultOptions: Config = {
   selectBoxStyle: 'number',
   selectMode: 'multiple',
   presentation: 'fullScreenModal',
-  language: 'system',
+  language: 'en',
   theme: 'system',
   isHiddenOriginalButton: false,
   allowSwipeToSelect: true,
@@ -190,18 +189,18 @@ export const defaultOptions: Config = {
   },
 }
 
-const LANGUAGES = [
-  'system',
-  'zh-Hans',
-  'zh-Hant',
-  'ja',
-  'ko',
-  'en',
-  'th',
-  'id',
-  'vi',
-  'ru',
-  'de',
-  'fr',
-  'ar',
-] as const
+// const LANGUAGES = [
+//   'system',
+//   'zh-Hans',
+//   'zh-Hant',
+//   'ja',
+//   'ko',
+//   'en',
+//   'th',
+//   'id',
+//   'vi',
+//   'ru',
+//   'de',
+//   'fr',
+//   'ar',
+// ] as const
