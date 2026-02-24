@@ -150,7 +150,7 @@ class MultipleImagePickerImp(reactContext: ReactApplicationContext?) :
             .isDisplayTimeAxis(true)
             .setSelectionMode(selectMode)
             .isOriginalControl(config.isHiddenOriginalButton == false)
-            .setLanguage(getLanguage(config.language))
+            .setLanguage(LanguageConfig.ENGLISH)
             .isPreviewFullScreenMode(true)
             .forResult(object : OnResultCallbackListener<LocalMedia?> {
                 override fun onResult(localMedia: ArrayList<LocalMedia?>?) {
@@ -323,7 +323,7 @@ class MultipleImagePickerImp(reactContext: ReactApplicationContext?) :
             .create(currentActivity)
             .openPreview()
             .setImageEngine(imageEngine)
-            .setLanguage(getLanguage(config.language))
+            .setLanguage(LanguageConfig.ENGLISH)
             .setSelectorUIStyle(previewStyle)
             .isPreviewFullScreenMode(true)
             .isAutoVideoPlay(config.videoAutoPlay == true)
@@ -360,7 +360,7 @@ class MultipleImagePickerImp(reactContext: ReactApplicationContext?) :
         PictureSelector
             .create(activity)
             .openCamera(chooseMode)
-            .setLanguage(getLanguage(config.language))
+            .setLanguage(LanguageConfig.ENGLISH)
             .setCameraInterceptListener(CameraEngine(appContext, config))
             .isQuickCapture(true)
             .isOriginalControl(true)
